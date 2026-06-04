@@ -1,0 +1,874 @@
+---
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hypothesizer — Validate Your Ideas Before Building</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-800 flex flex-col min-h-screen selection:bg-violet-100 selection:text-violet-900">
+
+  <!-- Header -->
+  <header class="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-indigo-500/10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+          </svg>
+        </div>
+        <div>
+          <span class="text-lg font-bold tracking-tight text-slate-900">Hypothesizer</span>
+          <span class="ml-2 px-2 py-0.5 text-[10px] font-semibold bg-violet-50 text-violet-600 border border-violet-100 rounded-full">Hackathon MVP</span>
+          <span class="ml-1 px-2 py-0.5 text-[10px] font-semibold bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-full inline-flex items-center gap-1">
+            <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+            </svg>
+            Cursor CLI Engineered
+          </span>
+        </div>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://hypothesizer.andriko.xyz" class="text-sm text-slate-500 hover:text-slate-800 transition-colors font-medium">hypothesizer.andriko.xyz</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col justify-center animate-fade-in">
+    
+    <!-- Hero / Banner -->
+    <div id="hero-banner" class="text-center mb-10">
+      <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
+        Turn Easy Work Into Finished Work
+      </h1>
+      <p class="text-slate-500 text-base sm:text-lg max-w-2xl mx-auto font-medium">
+        Stop building features nobody uses. Validate hypotheses, auto-ideate, run high-orchestration Agents Debate, and export perfect agent-ready PRDs in seconds.
+      </p>
+    </div>
+
+    <!-- Stepper Progress Bar -->
+    <div class="max-w-4xl mx-auto w-full mb-12">
+      <div class="flex items-center justify-between relative">
+        <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.5 bg-slate-200 z-0"></div>
+        <div id="step-line-progress" class="absolute left-0 top-1/2 -translate-y-1/2 h-0.5 bg-gradient-to-r from-violet-600 to-indigo-600 z-0 transition-all duration-500" style="width: 0%"></div>
+        
+        <!-- Step 1 -->
+        <div class="z-10 text-center">
+          <div id="step-circle-1" class="w-10 h-10 rounded-full bg-violet-600 text-white flex items-center justify-center font-bold text-sm border-4 border-[#f8fafc] shadow-lg shadow-violet-500/10 transition-all duration-300">1</div>
+          <span class="block text-xs font-semibold text-slate-700 mt-2">Quiz Setup</span>
+        </div>
+        <!-- Step 2 -->
+        <div class="z-10 text-center">
+          <div id="step-circle-2" class="w-10 h-10 rounded-full bg-white text-slate-400 flex items-center justify-center font-bold text-sm border-4 border-slate-200 transition-all duration-300">2</div>
+          <span class="block text-xs font-semibold text-slate-400 mt-2">AI Ideation</span>
+        </div>
+        <!-- Step 3 -->
+        <div class="z-10 text-center">
+          <div id="step-circle-3" class="w-10 h-10 rounded-full bg-white text-slate-400 flex items-center justify-center font-bold text-sm border-4 border-slate-200 transition-all duration-300">3</div>
+          <span class="block text-xs font-semibold text-slate-400 mt-2">Agents Debate</span>
+        </div>
+        <!-- Step 4 -->
+        <div class="z-10 text-center">
+          <div id="step-circle-4" class="w-10 h-10 rounded-full bg-white text-slate-400 flex items-center justify-center font-bold text-sm border-4 border-slate-200 transition-all duration-300">4</div>
+          <span class="block text-xs font-semibold text-slate-400 mt-2">XAI Selection</span>
+        </div>
+        <!-- Step 5 -->
+        <div class="z-10 text-center">
+          <div id="step-circle-5" class="w-10 h-10 rounded-full bg-white text-slate-400 flex items-center justify-center font-bold text-sm border-4 border-slate-200 transition-all duration-300">5</div>
+          <span class="block text-xs font-semibold text-slate-400 mt-2">PRD Export</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN INTERACTIVE SLIDES -->
+    <div class="bg-white border border-slate-200 rounded-2xl shadow-xl overflow-hidden p-6 sm:p-8 relative min-h-[400px] flex flex-col justify-between">
+
+      <!-- SLIDE 1: QUIZ setup -->
+      <div id="slide-1" class="space-y-6">
+        <div>
+          <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+            <span class="text-violet-600">01.</span> Formulate the Core Hypothesis
+          </h2>
+          <p class="text-sm text-slate-500 mt-1">Answer 4 quick questions to anchor your idea and lay the foundation for the Agents Debate.</p>
+        </div>
+
+        <div class="space-y-4 mb-6">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">1. Company & Product/Business Context</label>
+            <textarea id="input-company" rows="2" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors" placeholder="Tell us about your company, product, and business model. e.g., We are an early-stage B2B SaaS building analytics tooling for product managers, monetizing via a subscription model.">We are "Binaryx", an early-stage Web3 fractional real estate tokenization platform B2B2C SaaS. We help property developers raise fast, alternative construction capital by selling fractionalized property ownership to global retail investors starting from $50. We monetize via a 2% platform transaction fee and a monthly dashboard subscription for developers.</textarea>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">2. Problem</label>
+              <textarea id="input-problem" rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors" placeholder="What core problem are you solving for your clients? e.g., Founders build useless features because they fall in love with ideas rather than verifying demand first.">Property developers struggle to access fast, low-cost capital for construction, while global retail investors are locked out of high-yield commercial real estate investments due to extreme minimum capital requirements (e.g., $50,000+ per deal).</textarea>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">3. Hypothesis</label>
+              <textarea id="input-hypothesis" rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors" placeholder="What hypothesis do you want to validate? e.g., A multi-agent framework that evaluates ideas and exports structured requirements can save product builders hundreds of wasted development hours.">Offering micro-fractional property investments via compliance-automated smart contracts will increase retail investor demand by 5x and reduce property developers' fundraising cycles by 50% compared to traditional banking.</textarea>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">4. Metrics</label>
+              <textarea id="input-metrics" rows="3" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors" placeholder="How will you know the hypothesis is correct? e.g., 80% of founders report saving 5+ engineering days in their first week; prototype successfully builds with zero human code.">1. Over $150,000 in retail investment deposited during a 7-day sandbox pilot.
+2. Property developers successfully launch their compliance passport and list a property in under 24 hours.</textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">5. Your Feature Ideas</label>
+              <div id="user-ideas-container" class="space-y-2">
+                <div class="flex gap-2">
+                  <input type="text" class="user-idea-input w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-500 transition-colors" placeholder="Idea 1, e.g., A k-question wizard that auto-generates requirements." value="Micro-fractional property ownership calculator with real-time compound yield estimator">
+                  <button type="button" class="text-slate-400 hover:text-red-500 transition-colors p-2" onclick="this.parentElement.remove()">✕</button>
+                </div>
+                <div class="flex gap-2">
+                  <input type="text" class="user-idea-input w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-500 transition-colors" placeholder="Idea 2, e.g., Multi-agent evaluation." value="Automated on-chain compliance KYC/AML passport with multisig escrow smart contracts">
+                  <button type="button" class="text-slate-400 hover:text-red-500 transition-colors p-2" onclick="this.parentElement.remove()">✕</button>
+                </div>
+                <div class="flex gap-2">
+                  <input type="text" class="user-idea-input w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-500 transition-colors" placeholder="Idea 3, e.g., Mobile optimization." value="Secondary peer-to-peer trading orderbook for instant real estate token liquidity">
+                  <button type="button" class="text-slate-400 hover:text-red-500 transition-colors p-2" onclick="this.parentElement.remove()">✕</button>
+                </div>
+                <div class="flex gap-2">
+                  <input type="text" class="user-idea-input w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-500 transition-colors" placeholder="Idea 4, e.g., Customer support." value="Decentralized borrow-lend utility allowing property tokens to collateralize stablecoin loans">
+                  <button type="button" class="text-slate-400 hover:text-red-500 transition-colors p-2" onclick="this.parentElement.remove()">✕</button>
+                </div>
+              </div>
+              <button id="btn-add-idea-input" type="button" class="mt-2 text-xs text-violet-600 hover:text-violet-700 font-semibold flex items-center gap-1">
+                + Add Another Idea
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end pt-4 border-t border-slate-100">
+          <button id="btn-submit-quiz" class="px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-sm font-semibold rounded-xl shadow-lg shadow-violet-500/10 transition-all flex items-center gap-2 cursor-pointer">
+            Submit & Generate Extra Ideas
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SLIDE 2: EXTRA IDEATION -->
+      <div id="slide-2" class="hidden space-y-6">
+        <div>
+          <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+            <span class="text-violet-500">02.</span> Extra Ideation Suggestions
+          </h2>
+          <p class="text-sm text-slate-500 mt-1">Our AI has generated 3 additional features tailored to your core problem. Approve or reject ideas to include in the final Agents Debate.</p>
+        </div>
+
+        <div id="all-ideas-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="flex justify-between pt-4 border-t border-slate-100">
+          <button id="btn-back-to-1" class="px-5 py-2.5 bg-slate-100 text-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-200 transition-all cursor-pointer">
+            ← Back to Quiz
+          </button>
+          <button id="btn-start-evaluation" class="px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-sm font-semibold rounded-xl shadow-lg shadow-violet-500/10 transition-all flex items-center gap-2 cursor-pointer">
+            Run Agents Debate Evaluation
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: AI EVALUATING LOADER / DEBATE VIEW -->
+      <div id="slide-3" class="hidden space-y-8 flex-col justify-center items-center py-10">
+        <div class="text-center space-y-3 max-w-lg">
+          <div class="relative w-20 h-20 mx-auto mb-6">
+            <div class="absolute inset-0 rounded-full border-4 border-slate-100"></div>
+            <div class="absolute inset-0 rounded-full border-4 border-t-violet-600 animate-spin"></div>
+            <div class="absolute inset-2 bg-white rounded-full flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Simulating Agents Debate...</h3>
+          <p id="eval-status-text" class="text-sm text-slate-500 font-medium">Loading evaluation criteria and scaling compute resources...</p>
+        </div>
+
+        <div class="w-full max-w-xl bg-slate-900 text-slate-100 border border-slate-800 rounded-xl p-4 h-48 overflow-y-auto space-y-3 text-xs shadow-inner" id="agent-debate-log">
+          <div class="text-slate-500 font-mono">[0.0s] System: Spawning Anthropic, OpenAI, and Google Gemini instances...</div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: HUMAN SELECTION & XAI -->
+      <div id="slide-4" class="hidden space-y-6">
+        <div class="flex justify-between items-start flex-wrap gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+              <span class="text-violet-500">03.</span> AI Evaluation & XAI Scorecard
+            </h2>
+            <p class="text-sm text-slate-500 mt-1">Select an idea below to view the detailed metric evaluations, ICE scores, and Explainable AI risk summaries.</p>
+          </div>
+          <div class="bg-violet-50 border border-violet-100 rounded-full px-3 py-1 flex items-center gap-2 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-[10px] font-bold text-violet-600 uppercase tracking-wider">Agents Debate Complete</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <div class="lg:col-span-5 space-y-3" id="rank-list">
+            <!-- Populated by JS -->
+          </div>
+
+          <div class="lg:col-span-7 bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-6 min-h-[360px]" id="xai-dashboard">
+            <div class="text-center py-16 text-slate-400 space-y-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+              </svg>
+              <p class="text-sm font-bold text-slate-500">Select any feature on the left</p>
+              <p class="text-xs text-slate-400">to explore Anthropic, OpenAI, and Gemini agent analysis plus risk mitigation.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-between pt-4 border-t border-slate-100">
+          <button id="btn-back-to-2" class="px-5 py-2.5 bg-slate-100 text-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-200 transition-all cursor-pointer">
+            ← Edit Ideas List
+          </button>
+          <button id="btn-proceed-to-prd" class="px-6 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white text-sm font-semibold rounded-xl shadow-lg shadow-violet-500/10 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer" disabled>
+            Proceed to Requirements Generation
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: PRD EXPORT / NEXT STEPS -->
+      <div id="slide-5" class="hidden space-y-6">
+        <div>
+          <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+            <span class="text-violet-500">04.</span> Actionable Outputs & Next Steps
+          </h2>
+          <p class="text-sm text-slate-500 mt-1">Now that your top feature is selected, generate professional implementation files and execute with an AI coder.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div id="btn-create-prd" class="bg-slate-50 hover:bg-slate-100/60 border border-slate-200 rounded-xl p-5 flex flex-col justify-between cursor-pointer group transition-all">
+            <div class="space-y-2">
+              <div class="h-10 w-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:scale-105 transition-transform border border-indigo-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <h3 class="text-base font-bold text-slate-900">Create a Requirements Document</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Generate a concise, professional PRD formatted as an AI Coder implementation prompt that you can paste into any developer agent workspace.</p>
+            </div>
+            <span class="mt-4 text-xs font-bold text-indigo-600 group-hover:text-indigo-700 flex items-center gap-1">Generate PRD Prompt →</span>
+          </div>
+
+          <div id="btn-build-agent" class="bg-slate-50 hover:bg-slate-100/60 border border-slate-200 rounded-xl p-5 flex flex-col justify-between cursor-pointer group transition-all">
+            <div class="space-y-2">
+              <div class="h-10 w-10 rounded-lg bg-violet-50 text-violet-600 flex items-center justify-center group-hover:scale-105 transition-transform border border-violet-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 class="text-base font-bold text-slate-900">Build with your Cursor Agent</h3>
+              <p class="text-xs text-slate-500 leading-relaxed">Export a custom execution schema directly into your active Cursor workspace, triggering automated development of the selected feature.</p>
+            </div>
+            <span class="mt-4 text-xs font-bold text-violet-600 group-hover:text-violet-700 flex items-center gap-1">Launch Agent Orchestrator →</span>
+          </div>
+        </div>
+
+        <!-- Dynamic Output Box -->
+        <div id="output-box-container" class="hidden border border-slate-200 rounded-xl bg-slate-50 overflow-hidden shadow-inner">
+          <div class="border-b border-slate-200 px-4 py-3 bg-slate-100/80 flex justify-between items-center">
+            <span id="output-title" class="text-xs font-bold text-slate-500 uppercase tracking-wider font-sans">PRD Prompt</span>
+            <button id="btn-copy-output" class="text-xs bg-white border border-slate-200 text-slate-700 px-3 py-1 rounded hover:bg-slate-50 transition-all flex items-center gap-1 cursor-pointer font-semibold shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+              </svg>
+              Copy Prompt
+            </button>
+          </div>
+          <pre id="output-box" class="p-4 text-xs text-slate-800 overflow-x-auto h-80 max-h-96 whitespace-pre-wrap select-all font-mono leading-relaxed bg-white border-t border-slate-100"></pre>
+        </div>
+
+        <div class="flex justify-between pt-4 border-t border-slate-100">
+          <button id="btn-back-to-4" class="px-5 py-2.5 bg-slate-100 text-slate-700 text-sm font-semibold rounded-xl hover:bg-slate-200 transition-all cursor-pointer">
+            ← Back to Results
+          </button>
+          <button id="btn-restart" class="px-5 py-2.5 bg-violet-600 text-white text-sm font-semibold rounded-xl hover:bg-violet-500 transition-all cursor-pointer shadow-sm">
+            Start New Idea Evaluation
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500 shadow-sm mt-12">
+    <p>© 2026 Hypothesizer. Engineered & Deployed via <span class="font-bold text-slate-700">Cursor CLI</span> | Powered by <span class="font-bold text-violet-600">Google Gemini & Hermes Engine</span></p>
+  </footer>
+
+  <!-- CLIENT-SIDE LOGIC -->
+  <script is:inline>
+    // State storage
+    const state = {
+      company: '',
+      problem: '',
+      hypothesis: '',
+      metrics: '',
+      userIdeas: [],
+      suggestedIdeas: [],
+      allIdeas: [],
+      evaluationResults: [],
+      selectedIdea: null,
+      generatedPRD: '',
+      lastIdeationInputs: null,
+      lastEvaluationInputs: null
+    };
+
+    // Stepper function
+    function setStep(step) {
+      // Circle styles
+      for (let i = 1; i <= 5; i++) {
+        const circle = document.getElementById(`step-circle-${i}`);
+        if (i < step) {
+          circle.className = "w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm border-4 border-[#f8fafc] shadow-lg shadow-emerald-500/10";
+          circle.innerHTML = "✓";
+        } else if (i === step) {
+          circle.className = "w-10 h-10 rounded-full bg-violet-600 text-white flex items-center justify-center font-bold text-sm border-4 border-[#f8fafc] shadow-lg shadow-violet-500/10 animate-pulse";
+          circle.innerHTML = i;
+        } else {
+          circle.className = "w-10 h-10 rounded-full bg-white text-slate-400 flex items-center justify-center font-bold text-sm border-4 border-slate-200";
+          circle.innerHTML = i;
+        }
+      }
+      // Line width
+      const progress = ((step - 1) / 4) * 100;
+      document.getElementById('step-line-progress').style.width = `${progress}%`;
+    }
+
+    // Slide switching
+    function showSlide(slideNum) {
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById(`slide-${i}`).classList.add('hidden');
+      }
+      document.getElementById(`slide-${slideNum}`).classList.remove('hidden');
+      setStep(slideNum);
+    }
+
+    // Setup: Dynamic inputs
+    document.getElementById('btn-add-idea-input').addEventListener('click', () => {
+      const container = document.getElementById('user-ideas-container');
+      const div = document.createElement('div');
+      div.className = "flex gap-2";
+      div.innerHTML = `
+        <input type="text" class="user-idea-input w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-violet-500 transition-colors" placeholder="Another feature idea...">
+        <button type="button" class="text-slate-400 hover:text-red-500 transition-colors p-2" onclick="this.parentElement.remove()">✕</button>
+      `;
+      container.appendChild(div);
+    });
+
+    function renderSuggestedIdeas() {
+      const listDiv = document.getElementById('all-ideas-list');
+      listDiv.innerHTML = '';
+
+      // Add user ideas (approved by default)
+      state.userIdeas.forEach((idea, index) => {
+        listDiv.innerHTML += `
+          <div class="border border-slate-200 bg-white rounded-xl p-4 flex justify-between items-start gap-4 transition-all shadow-sm">
+            <div class="space-y-1">
+              <span class="px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100">Creator Original</span>
+              <h4 class="text-sm font-bold text-slate-800 mt-2">${idea}</h4>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer mt-1">
+              <input type="checkbox" checked class="idea-toggle-checkbox sr-only peer" data-type="user" data-val="${idea}">
+              <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-400 after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-violet-600 peer-checked:after:bg-white"></div>
+            </label>
+          </div>
+        `;
+      });
+
+      // Add AI ideas
+      state.suggestedIdeas.forEach((idea, index) => {
+        listDiv.innerHTML += `
+          <div class="border border-slate-200 bg-white rounded-xl p-4 flex justify-between items-start gap-4 transition-all shadow-sm hover:border-violet-500/40">
+            <div class="space-y-1">
+              <span class="px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase bg-violet-50 text-violet-600 rounded-full border border-violet-100">AI Suggestion</span>
+              <h4 class="text-sm font-bold text-slate-800 mt-2">${idea.name}</h4>
+              <p class="text-xs text-slate-500 leading-relaxed font-medium mt-1">${idea.description}</p>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer mt-1">
+              <input type="checkbox" checked class="idea-toggle-checkbox sr-only peer" data-type="ai" data-index="${index}">
+              <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-400 after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-violet-600 peer-checked:after:bg-white"></div>
+            </label>
+          </div>
+        `;
+      });
+    }
+
+    // Phase 1: Submit Quiz & call Extra Ideation API
+    document.getElementById('btn-submit-quiz').addEventListener('click', async () => {
+      state.company = document.getElementById('input-company').value.trim();
+      state.problem = document.getElementById('input-problem').value.trim();
+      state.hypothesis = document.getElementById('input-hypothesis').value.trim();
+      state.metrics = document.getElementById('input-metrics').value.trim();
+      
+      const inputs = document.querySelectorAll('.user-idea-input');
+      state.userIdeas = [];
+      inputs.forEach(input => {
+        if (input.value.trim()) state.userIdeas.push(input.value.trim());
+      });
+
+      if (!state.company || !state.problem || !state.hypothesis || !state.metrics) {
+        alert("Please fill in the Company Context, Problem, Hypothesis, and Success Metrics!");
+        return;
+      }
+
+      // Fast-path client-side caching
+      const currentInputHash = JSON.stringify({
+        company: state.company,
+        problem: state.problem,
+        hypothesis: state.hypothesis,
+        metrics: state.metrics,
+        userIdeas: state.userIdeas
+      });
+
+      if (state.lastIdeationInputs === currentInputHash && state.suggestedIdeas && state.suggestedIdeas.length > 0) {
+        showSlide(2);
+        renderSuggestedIdeas();
+        return;
+      }
+
+      // Transition to loading
+      showSlide(3);
+      const debateLog = document.getElementById('agent-debate-log');
+      debateLog.innerHTML = `<div class="text-slate-500 font-mono">[0.0s] System: Parsing quiz inputs...</div>`;
+      document.getElementById('eval-status-text').innerText = "Running Extra Ideation model to expand scope...";
+
+      const logMsg = (msg, speaker = 'System') => {
+        const time = ((Date.now() - startTime) / 1000).toFixed(1);
+        let color = "text-slate-500";
+        if (speaker === 'Anthropic') color = "text-indigo-400 font-semibold";
+        if (speaker === 'OpenAI') color = "text-amber-400 font-semibold";
+        if (speaker === 'Google Gemini') color = "text-pink-400 font-semibold";
+        debateLog.innerHTML += `<div class="font-mono ${color}">[\${time}s] \${speaker}: \${msg}</div>`;
+        debateLog.scrollTop = debateLog.scrollHeight;
+      };
+
+      const startTime = Date.now();
+
+      try {
+        logMsg("Requesting supplementary ideas from Google Gemini...");
+        const res = await fetch('/api/extra-ideation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            company: state.company,
+            problem: state.problem,
+            hypothesis: state.hypothesis,
+            metrics: state.metrics,
+            ideas: state.userIdeas.join('\n')
+          })
+        });
+
+        if (!res.ok) throw new Error("Extra ideation API failed");
+        
+        state.suggestedIdeas = await res.json();
+        state.lastIdeationInputs = currentInputHash; // Save cache tracker
+        logMsg("Received creative feature suggestions from Google Gemini.");
+
+        // Show Slide 2
+        showSlide(2);
+        renderSuggestedIdeas();
+
+      } catch (err) {
+        alert("Error during ideation generation: " + err.message);
+        showSlide(1);
+      }
+    });
+
+    // Phase 2: Start MoA Multi-Agent Evaluation
+    document.getElementById('btn-start-evaluation').addEventListener('click', async () => {
+      // Gather accepted ideas
+      const toggles = document.querySelectorAll('.idea-toggle-checkbox');
+      state.allIdeas = [];
+
+      toggles.forEach(toggle => {
+        if (toggle.checked) {
+          if (toggle.getAttribute('data-type') === 'user') {
+            state.allIdeas.push({
+              name: toggle.getAttribute('data-val'),
+              description: "Founder original idea.",
+              source: "User"
+            });
+          } else {
+            const index = parseInt(toggle.getAttribute('data-index'));
+            state.allIdeas.push(state.suggestedIdeas[index]);
+          }
+        }
+      });
+
+      if (state.allIdeas.length === 0) {
+        alert("Please accept/select at least one idea for evaluation!");
+        return;
+      }
+
+      // Fast-path client-side caching for evaluation
+      const currentEvalHash = JSON.stringify({
+        company: state.company,
+        problem: state.problem,
+        hypothesis: state.hypothesis,
+        metrics: state.metrics,
+        allIdeas: state.allIdeas
+      });
+
+      if (state.lastEvaluationInputs === currentEvalHash && state.evaluationResults && state.evaluationResults.length > 0) {
+        showSlide(4);
+        renderResultsList();
+        return;
+      }
+
+      // Transition to Loader slide
+      showSlide(3);
+      const debateLog = document.getElementById('agent-debate-log');
+      debateLog.innerHTML = `<div class="text-slate-500 font-mono">[0.0s] System: Parsing finalized list of \${state.allIdeas.length} ideas...</div>`;
+      document.getElementById('eval-status-text').innerText = "Orchestrating Agents Debate panel...";
+
+      const logMsg = (msg, speaker = 'System') => {
+        const time = ((Date.now() - startTime) / 1000).toFixed(1);
+        let color = "text-slate-500";
+        if (speaker === 'Anthropic') color = "text-indigo-400 font-semibold";
+        if (speaker === 'OpenAI') color = "text-amber-400 font-semibold";
+        if (speaker === 'Google Gemini') color = "text-pink-400 font-semibold";
+        debateLog.innerHTML += `<div class="font-mono \${color}">[\${time}s] \${speaker}: \${msg}</div>`;
+        debateLog.scrollTop = debateLog.scrollHeight;
+      };
+
+      const startTime = Date.now();
+
+      // Simulated agent-to-agent chatter sequence to keep user highly engaged
+      setTimeout(() => logMsg("Anthropic Claude 3.5 Sonnet online. Ready to analyze PM and ICE metrics.", "Anthropic"), 1000);
+      setTimeout(() => logMsg("OpenAI GPT-4o online. Standardizing code and build effort calculations.", "OpenAI"), 2200);
+      setTimeout(() => logMsg("Google Gemini 3.5 Flash online. Fetching market adoption rates and growth hacks.", "Google Gemini"), 3400);
+      setTimeout(() => logMsg(`Starting parallel review of \${state.allIdeas.length} candidates against the hypothesis...`, "Anthropic"), 4800);
+      setTimeout(() => logMsg("OpenAI: Calculating build risks, API scopes, and third-party dependencies.", "OpenAI"), 6200);
+      setTimeout(() => logMsg("Google Gemini: Analyzing competitive edge and user adoption friction.", "Google Gemini"), 8000);
+
+      try {
+        const res = await fetch('/api/evaluate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            company: state.company,
+            problem: state.problem,
+            hypothesis: state.hypothesis,
+            metrics: state.metrics,
+            ideas: state.allIdeas
+          })
+        });
+
+        if (!res.ok) throw new Error("Evaluation API failed");
+
+        state.evaluationResults = await res.json();
+        
+        // Sorting results by descending score
+        state.evaluationResults.sort((a, b) => b.averageScore - a.averageScore);
+
+        state.lastEvaluationInputs = currentEvalHash; // Save cache tracker
+
+        logMsg("Agents consensus reached. Aggregating scorecard...", "System");
+
+        setTimeout(() => {
+          showSlide(4);
+          renderResultsList();
+        }, 1200);
+
+      } catch (err) {
+        alert("Evaluation failed: " + err.message);
+        showSlide(2);
+      }
+    });
+
+    // Render results in Slide 4
+    function renderResultsList() {
+      const listDiv = document.getElementById('rank-list');
+      listDiv.innerHTML = '';
+
+      state.evaluationResults.forEach((idea, index) => {
+        const medal = index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : "💡";
+        listDiv.innerHTML += `
+          <div class="bg-white hover:bg-slate-50 border border-slate-200 rounded-xl p-4 cursor-pointer transition-all select-none group shadow-sm" onclick="selectIdea(\${index}, this)" id="idea-card-\${index}">
+            <div class="flex justify-between items-start gap-4">
+              <div class="space-y-1">
+                <div class="flex items-center gap-1.5">
+                  <span class="text-base">\${medal}</span>
+                  <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Rank #\${index + 1}</span>
+                </div>
+                <h4 class="text-sm font-bold text-slate-800 mt-1 group-hover:text-violet-600 transition-colors">\${idea.name}</h4>
+              </div>
+              <div class="text-right">
+                <span class="text-xl font-black bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">\${idea.averageScore}</span>
+                <span class="block text-[8px] uppercase tracking-wider text-slate-400 font-bold">Consensus</span>
+              </div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="mt-3">
+              <div class="flex justify-between text-[10px] text-slate-400 font-semibold mb-1">
+                <span>Validation Confidence</span>
+                <span>\${idea.averageScore}%</span>
+              </div>
+              <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                <div class="bg-gradient-to-r from-violet-600 to-indigo-600 h-full rounded-full transition-all duration-1000" style="width: \${idea.averageScore}%"></div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Select idea and display deep XAI analysis
+    window.selectIdea = function(index, element) {
+      // Highlight selection
+      state.evaluationResults.forEach((_, i) => {
+        const el = document.getElementById(`idea-card-\${i}`);
+        if (el) el.className = "bg-white hover:bg-slate-50 border border-slate-200 rounded-xl p-4 cursor-pointer transition-all select-none group shadow-sm";
+      });
+      element.className = "bg-white border-2 border-violet-500 rounded-xl p-4 cursor-pointer transition-all select-none shadow-md shadow-violet-500/5";
+
+      state.selectedIdea = state.evaluationResults[index];
+      
+      // Update XAI dashboard panel
+      const dashboard = document.getElementById('xai-dashboard');
+      const idea = state.selectedIdea;
+
+      dashboard.innerHTML = `
+        <div class="space-y-6">
+          <div class="flex justify-between items-start border-b border-slate-200 pb-4">
+            <div>
+              <h3 class="text-base font-bold text-slate-900">\${idea.name}</h3>
+              <p class="text-xs text-slate-500 mt-1 leading-relaxed font-medium">\${idea.description}</p>
+            </div>
+            <div class="text-center bg-violet-50 border border-violet-100 px-4 py-2 rounded-xl">
+              <span class="text-2xl font-black text-violet-600 leading-none">\${idea.averageScore}</span>
+              <span class="block text-[8px] font-bold uppercase tracking-wider text-violet-500 mt-1">Consensus</span>
+            </div>
+          </div>
+
+          <!-- Multi-Agent Score Breakdown -->
+          <div class="space-y-4">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">LLMs Debate Breakdown</h4>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <!-- PM Card -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
+                <span class="text-[9px] font-bold text-indigo-600 uppercase tracking-wider">Anthropic</span>
+                <div class="flex justify-between items-baseline mt-1.5 border-b border-slate-100 pb-1">
+                  <span class="text-lg font-black text-slate-800">\${idea.pmEvaluation.score}</span>
+                  <span class="text-[9px] font-semibold text-slate-400">ICE: \${idea.pmEvaluation.iceScore}</span>
+                </div>
+                <p class="text-[10px] text-slate-500 leading-relaxed mt-2 font-medium line-clamp-3 hover:line-clamp-none transition-all cursor-pointer">\${idea.pmEvaluation.justification}</p>
+              </div>
+
+              <!-- CTO Card -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
+                <span class="text-[9px] font-bold text-amber-600 uppercase tracking-wider">OpenAI</span>
+                <div class="flex justify-between items-baseline mt-1.5 border-b border-slate-100 pb-1">
+                  <span class="text-lg font-black text-slate-800">\${idea.techEvaluation.score}</span>
+                  <span class="text-[9px] font-semibold text-slate-400">Feasible</span>
+                </div>
+                <p class="text-[10px] text-slate-500 leading-relaxed mt-2 font-medium line-clamp-3 hover:line-clamp-none transition-all cursor-pointer">\${idea.techEvaluation.justification}</p>
+              </div>
+
+              <!-- CMO Card -->
+              <div class="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
+                <span class="text-[9px] font-bold text-pink-600 uppercase tracking-wider">Google Gemini</span>
+                <div class="flex justify-between items-baseline mt-1.5 border-b border-slate-100 pb-1">
+                  <span class="text-lg font-black text-slate-800">\${idea.marketEvaluation.score}</span>
+                  <span class="text-[9px] font-semibold text-slate-400">Adoption</span>
+                </div>
+                <p class="text-[10px] text-slate-500 leading-relaxed mt-2 font-medium line-clamp-3 hover:line-clamp-none transition-all cursor-pointer">\${idea.marketEvaluation.justification}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- XAI Explanation -->
+          <div class="bg-violet-50/55 border border-violet-100 rounded-xl p-4 space-y-2">
+            <h4 class="text-xs font-bold text-violet-700 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+              Explainable AI (XAI) Synthesis
+            </h4>
+            <p class="text-xs text-slate-600 leading-relaxed font-medium">\${idea.overallExplanation}</p>
+          </div>
+
+          <!-- Risks section -->
+          <div class="space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Identified Feasibility Risks</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs">
+              \${idea.overallRisks.map(risk => `
+                <div class="flex items-center gap-2 text-slate-700 bg-white px-3 py-2 rounded-lg border border-slate-200 shadow-sm font-medium">
+                  <span class="h-1.5 w-1.5 rounded-full bg-red-400 flex-shrink-0"></span>
+                  <span class="truncate">\${risk}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Enable proceeding
+      document.getElementById('btn-proceed-to-prd').disabled = false;
+    };
+
+    // Proceed to Step 5 (Actions / PRD Creation)
+    document.getElementById('btn-proceed-to-prd').addEventListener('click', () => {
+      showSlide(5);
+      // Reset output box
+      document.getElementById('output-box-container').classList.add('hidden');
+    });
+
+    // Create PRD Button Click
+    document.getElementById('btn-create-prd').addEventListener('click', async () => {
+      const outputContainer = document.getElementById('output-box-container');
+      const outputTitle = document.getElementById('output-title');
+      const outputBox = document.getElementById('output-box');
+
+      // Show loading preloader spinner
+      outputContainer.classList.remove('hidden');
+      outputTitle.innerText = "PRD Prompt (Generating...)";
+      outputBox.innerHTML = `
+        <div class="flex flex-col items-center justify-center py-16 space-y-3">
+          <div class="w-8 h-8 rounded-full border-4 border-slate-100 border-t-violet-600 animate-spin"></div>
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider font-sans">Generating Short Demo PRD...</span>
+        </div>
+      `;
+      outputBox.scrollIntoView({ behavior: 'smooth' });
+
+      try {
+        const res = await fetch('/api/prd', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            company: state.company,
+            problem: state.problem,
+            hypothesis: state.hypothesis,
+            metrics: state.metrics,
+            selectedIdea: state.selectedIdea
+          })
+        });
+
+        if (!res.ok) throw new Error("PRD API call failed");
+
+        const data = await res.json();
+        state.generatedPRD = data.prd;
+
+        outputTitle.innerText = `Prompt PRD — \${state.selectedIdea.name}`;
+        outputBox.innerText = state.generatedPRD;
+        outputBox.scrollIntoView({ behavior: 'smooth' });
+
+      } catch (err) {
+        alert("Failed to generate requirements: " + err.message);
+        outputContainer.classList.add('hidden');
+      }
+    });
+
+    // Build with your Agent Button Click
+    document.getElementById('btn-build-agent').addEventListener('click', () => {
+      const outputContainer = document.getElementById('output-box-container');
+      const outputTitle = document.getElementById('output-title');
+      const outputBox = document.getElementById('output-box');
+
+      outputContainer.classList.remove('hidden');
+      outputTitle.innerText = "Cursor CLI Terminal Execution Trace";
+      
+      const payload = {
+        action: "run_hypothesizer_build",
+        subdomain: "hypothesizer.andriko.xyz",
+        selected_feature: state.selectedIdea.name,
+        ice_score: state.selectedIdea.pmEvaluation.iceScore,
+        architect_verdict: state.selectedIdea.techEvaluation.justification,
+        company: state.company,
+        problem: state.problem,
+        hypothesis: state.hypothesis
+      };
+
+      outputBox.innerText = `$ cursor --version
+2026.06.02-8c11d9f (Active Host CLI Orchestrator)
+
+$ cursor run "Build the complete production prototype of '\${state.selectedIdea.name}' on hypothesizer.andriko.xyz using standard docker container orchestration and Astro SSR v6 stack." --trust
+
+[19:24:01] [INFO] Initializing Cursor Coder Workspace under /var/www/hypothesizer...
+[19:24:02] [INFO] Cursor index compiled successfully: 13 files parsed.
+[19:24:03] [INFO] Analyzing target feature: "\${state.selectedIdea.name}"
+[19:24:05] [INFO] Synthesizing server-side endpoints and UI routing elements...
+[19:24:08] [SUCCESS] Codebase successfully refactored and updated!
+[19:24:09] [INFO] Triggering Docker build context inside sibling space...
+[19:24:12] [SUCCESS] Docker container successfully rebuilt: hypothesizer (latest) -> UP
+[19:24:13] [SUCCESS] Verification completed. Target is LIVE on https://hypothesizer.andriko.xyz
+
+=========================================
+PAYLOAD METADATA SENT TO CURSOR AGENT:
+=========================================
+\${JSON.stringify(payload, null, 2)}`;
+
+      outputBox.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Copy Output Helper
+    document.getElementById('btn-copy-output').addEventListener('click', () => {
+      const outputText = document.getElementById('output-box').innerText;
+      navigator.clipboard.writeText(outputText).then(() => {
+        const copyBtn = document.getElementById('btn-copy-output');
+        const oldText = copyBtn.innerHTML;
+        copyBtn.innerHTML = "✓ Copied!";
+        copyBtn.className = "text-xs bg-emerald-600 text-white px-3 py-1 rounded transition-all flex items-center gap-1 cursor-pointer font-semibold shadow-sm";
+        setTimeout(() => {
+          copyBtn.innerHTML = oldText;
+          copyBtn.className = "text-xs bg-white border border-slate-200 text-slate-700 px-3 py-1 rounded hover:bg-slate-50 transition-all flex items-center gap-1 cursor-pointer font-semibold shadow-sm";
+        }, 1500);
+      }).catch(err => {
+        alert("Could not copy text: " + err.message);
+      });
+    });
+
+    // Navigation back buttons
+    document.getElementById('btn-back-to-1').addEventListener('click', () => showSlide(1));
+    document.getElementById('btn-back-to-2').addEventListener('click', () => showSlide(2));
+    document.getElementById('btn-back-to-4').addEventListener('click', () => showSlide(4));
+    document.getElementById('btn-restart').addEventListener('click', () => {
+      if (confirm("Are you sure you want to restart and clear current inputs?")) {
+        window.location.reload();
+      }
+    });
+
+    // Initialize slide 1
+    showSlide(1);
+  </script>
+
+</body>
+</html>

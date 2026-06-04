@@ -1,0 +1,13 @@
+services:
+  hypothesizer:
+    build: .
+    container_name: hypothesizer
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+    ports:
+      - 127.0.0.1:4325:4325
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
