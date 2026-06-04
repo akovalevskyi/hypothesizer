@@ -1,0 +1,22 @@
+# Node.js dependencies
+node_modules/
+
+# Production build output
+dist/
+
+# Astro temporary files
+.astro/
+
+# Sensitive data / Google Vertex Service Account key
+data/
+vertex_key.json
+*.json.key
+*.pem
+
+# Environment variables
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
